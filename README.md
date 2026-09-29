@@ -508,8 +508,9 @@ Crops the image to the bounding box of its non-transparent pixels, removing empt
 
 | Field | Details |
 |---|---|
+| **Sides** | Which edges to trim: any combination of Top, Bottom, Left, Right (default all four). Unselected edges stay exactly where they are — e.g. pick only Bottom to remove empty space under a subject while keeping its original framing. Via expression, an array or a comma-separated string (`"top,bottom"`) is accepted. |
 | **Alpha Threshold** | 0–254, default 0. Pixels with alpha at or below this value count as transparent. `0` trims only fully transparent pixels; raise it to also ignore faint halos or near-invisible anti-aliasing noise. |
-| **Padding** | Pixels, default 0. Transparent margin to keep around the visible content. Clamped to the original image bounds. |
+| **Padding** | Pixels, default 0. Transparent margin to keep around the visible content on the trimmed sides. Clamped to the original image bounds. |
 
 ### 6.20 Add Watermark
 
