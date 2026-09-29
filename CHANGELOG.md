@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here.
 
+## [Unreleased]
+
+### Fixed
+- **Multi-Step: a later step could silently undo an earlier one.** `sharp` merges repeated calls of the same kind on one pipeline instead of applying them in sequence, so for example *Border → Border* kept only the last border, *Rotate 90° → Rotate 90°* rotated only once, and anything that ends in `extend` (like a Border) wiped out space added by an earlier step. The image is now materialized between Multi-Step operations, so each step works on the actual result of the previous one. This also fixes *Resize → Transparent* crashing with `VipsImage: memory area too small`, because Transparent read the original input size instead of the resized one
+
 ## [1.3.1]
 
 ### Fixed
