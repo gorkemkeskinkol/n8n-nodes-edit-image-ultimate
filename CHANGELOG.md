@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here.
 
+## [1.6.0]
+
+### Added
+- **Resize**: Width or Height can now be `0` (or empty) to mean **auto** — the missing side is calculated from the other, keeping the aspect ratio. Previously both were required (minimum 1). Existing values behave exactly as before
+
+### Fixed
+- **Multi-Step: chained Resize steps didn't compose.** `sharp` merges consecutive `.resize()` calls on the same pipeline instead of applying them one after another, so a later Resize step would silently keep options from an earlier one. Resize now materializes the current image first, so each step resizes the result of the previous step
+
 ## [1.5.0]
 
 ### Added
