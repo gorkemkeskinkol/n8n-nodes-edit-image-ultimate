@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here.
 
+## [1.5.0]
+
+### Added
+- **Trim** now has a **Sides** option: trim any combination of Top, Bottom, Left and Right (default all four, same as before). Unselected edges stay exactly where they are, and Padding applies only to the trimmed sides. Via expression, an array or a comma-separated string (`"top,bottom"`) is accepted
+
 ## [1.4.0]
 
 ### Added

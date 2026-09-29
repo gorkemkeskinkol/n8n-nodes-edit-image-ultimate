@@ -2422,6 +2422,20 @@ const nodeOperationOptions: INodeProperties[] = [
 	// trim (crop to the bounding box of non-transparent pixels)
 	// ────────────────────────────────────────────────────────────────────────
 	{
+		displayName: 'Sides',
+		name: 'trimSides',
+		type: 'multiOptions',
+		options: [
+			{ name: 'Top', value: 'top' },
+			{ name: 'Bottom', value: 'bottom' },
+			{ name: 'Left', value: 'left' },
+			{ name: 'Right', value: 'right' },
+		],
+		default: ['top', 'bottom', 'left', 'right'],
+		displayOptions: { show: { operation: ['trim'] } },
+		description: 'Which edges to trim. Unselected edges stay exactly where they are. Via expression, an array or a comma-separated string (e.g. "top,bottom") is accepted.',
+	},
+	{
 		displayName: 'Alpha Threshold',
 		name: 'trimAlphaThreshold',
 		type: 'number',
@@ -2437,7 +2451,7 @@ const nodeOperationOptions: INodeProperties[] = [
 		typeOptions: { minValue: 0 },
 		default: 0,
 		displayOptions: { show: { operation: ['trim'] } },
-		description: 'Transparent margin in pixels to keep around the visible content (never extends past the original image edges)',
+		description: 'Transparent margin in pixels to keep around the visible content on the trimmed sides (never extends past the original image edges)',
 	},
 
 	// ────────────────────────────────────────────────────────────────────────
@@ -2972,7 +2986,7 @@ function buildSingleOpParams(ctx: IExecuteFunctions, operation: string, itemInde
 		],
 		tint: ['tintColor'],
 		transparent: ['transparentColor', 'tolerance'],
-		trim: ['trimAlphaThreshold', 'trimPadding'],
+		trim: ['trimSides', 'trimAlphaThreshold', 'trimPadding'],
 		watermark: ['watermarkProperty', 'watermarkGravity', 'watermarkOpacity', 'watermarkScale'],
 	};
 
@@ -4175,6 +4189,11 @@ async function applyOperation(
 		// Multi-Step operations, not the original input's dimensions.
 		const threshold = Math.min(254, Math.max(0, (op.trimAlphaThreshold as number) ?? 0));
 		const padding = Math.max(0, Math.round((op.trimPadding as number) ?? 0));
+		const rawSides = op.trimSides ?? ['top', 'bottom', 'left', 'right'];
+		const sides = new Set(
+			(Array.isArray(rawSides) ? rawSides : asString(rawSides).split(','))
+				.map((side) => ci(side)),
+		);
 		const { data, info } = await instance.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
 		const { width: w, height: h, channels } = info;
 		const alphaOffset = channels - 1;
@@ -4200,10 +4219,11 @@ async function applyOperation(
 		// Fully transparent image — nothing to anchor to, return unchanged
 		if (maxX < 0) return raw;
 
-		const left = Math.max(0, minX - padding);
-		const top = Math.max(0, minY - padding);
-		const right = Math.min(w - 1, maxX + padding);
-		const bottom = Math.min(h - 1, maxY + padding);
+		// Unselected sides keep the original edge
+		const left = sides.has('left') ? Math.max(0, minX - padding) : 0;
+		const top = sides.has('top') ? Math.max(0, minY - padding) : 0;
+		const right = sides.has('right') ? Math.min(w - 1, maxX + padding) : w - 1;
+		const bottom = sides.has('bottom') ? Math.min(h - 1, maxY + padding) : h - 1;
 		return raw.extract({ left, top, width: right - left + 1, height: bottom - top + 1 });
 	}
 
