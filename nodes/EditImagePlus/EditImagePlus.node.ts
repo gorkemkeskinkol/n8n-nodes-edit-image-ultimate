@@ -424,7 +424,8 @@ function hexToRgba(hex: string): { r: number; g: number; b: number; alpha: numbe
 	const r = parseInt(clean.substring(0, 2), 16) || 0;
 	const g = parseInt(clean.substring(2, 4), 16) || 0;
 	const b = parseInt(clean.substring(4, 6), 16) || 0;
-	const alpha = clean.length === 8 ? (parseInt(clean.substring(6, 8), 16) || 255) / 255 : 1;
+	const alphaByte = clean.length === 8 ? parseInt(clean.substring(6, 8), 16) : 255;
+	const alpha = Number.isNaN(alphaByte) ? 1 : alphaByte / 255;
 	return { r, g, b, alpha };
 }
 

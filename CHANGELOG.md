@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here.
 
+## [Unreleased]
+
+### Fixed
+- **Fully transparent colours (`#RRGGBB00`) were treated as fully opaque.** The hex parser used `parseInt(...) || 255` for the alpha byte, so an alpha of `00` (which parses to `0`, a falsy value) fell through to `255`. Any colour field set to a fully transparent value — Create background, Border color, Rotate background, and so on — rendered as a solid colour instead. Alpha `00` now correctly yields a fully transparent colour
+
 ## [1.3.1]
 
 ### Fixed
