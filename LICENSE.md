@@ -1,5 +1,6 @@
 Copyright 2022 n8n
 Portions Copyright 2026 Abdullah-Sheikh-H (n8n-nodes-edit-image-ultimate — substantial rewrite and feature additions)
+Portions Copyright 2026 Gorkem Keskinkol (n8n-nodes-edit-image-ultimate-plus — Trim, Canvas Size, and fixes)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

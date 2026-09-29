@@ -1,15 +1,18 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Abdullah-Sheikh-H/n8n-nodes-edit-image-ultimate/main/docs/images/logo.svg" width="96" height="96" alt="Edit Image Ultimate logo">
+  <img src="https://raw.githubusercontent.com/gorkemkeskinkol/n8n-nodes-edit-image-ultimate/main/docs/images/logo.svg" width="96" height="96" alt="Edit Image Ultimate logo">
 </p>
 
-<h1 align="center">n8n-nodes-edit-image-ultimate</h1>
+<h1 align="center">n8n-nodes-edit-image-ultimate-plus</h1>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/n8n-nodes-edit-image-ultimate"><img src="https://img.shields.io/npm/v/n8n-nodes-edit-image-ultimate.svg" alt="npm version"></a>
-  <a href="https://www.npmjs.com/package/n8n-nodes-edit-image-ultimate"><img src="https://img.shields.io/npm/dm/n8n-nodes-edit-image-ultimate.svg" alt="npm downloads"></a>
+  <a href="https://www.npmjs.com/package/n8n-nodes-edit-image-ultimate-plus"><img src="https://img.shields.io/npm/v/n8n-nodes-edit-image-ultimate-plus.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/n8n-nodes-edit-image-ultimate-plus"><img src="https://img.shields.io/npm/dm/n8n-nodes-edit-image-ultimate-plus.svg" alt="npm downloads"></a>
   <a href="LICENSE.md"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
   <a href="https://docs.n8n.io/integrations/community-nodes/"><img src="https://img.shields.io/badge/n8n-community--node-orange" alt="n8n community node"></a>
 </p>
+
+> **This is a fork of [n8n-nodes-edit-image-ultimate](https://github.com/Abdullah-Sheikh-H/n8n-nodes-edit-image-ultimate) by Abdullah-Sheikh-H.**
+> It adds a **[Trim](#620-trim)** operation (crop away transparent edges) and a Photoshop-style **[Canvas Size](#63-canvas-size)** operation, and fixes fully transparent colours (`#RRGGBB00`) being rendered as opaque. These changes have also been submitted upstream.
 
 <p align="center">
   <strong>Advanced image editing for <a href="https://n8n.io">n8n</a></strong>, powered by <strong><a href="https://sharp.pixelplumbing.com/">Sharp</a></strong> (libvips). No GraphicsMagick required.
@@ -22,15 +25,15 @@ This node renders text through real SVG — genuine font weights, italics, Gauss
 <table align="center">
   <tr>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/Abdullah-Sheikh-H/n8n-nodes-edit-image-ultimate/main/docs/images/actions-list.png" width="260" alt="Edit Image Ultimate — 23 available actions"><br>
+      <img src="https://raw.githubusercontent.com/gorkemkeskinkol/n8n-nodes-edit-image-ultimate/main/docs/images/actions-list.png" width="260" alt="Edit Image Ultimate — 23 available actions"><br>
       <sub>23 built-in actions</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/Abdullah-Sheikh-H/n8n-nodes-edit-image-ultimate/main/docs/images/text-operation-panel-1.png" width="260" alt="Text operation — font, positioning, and alignment fields"><br>
+      <img src="https://raw.githubusercontent.com/gorkemkeskinkol/n8n-nodes-edit-image-ultimate/main/docs/images/text-operation-panel-1.png" width="260" alt="Text operation — font, positioning, and alignment fields"><br>
       <sub>Text — font & positioning</sub>
     </td>
     <td align="center" width="33%">
-      <img src="https://raw.githubusercontent.com/Abdullah-Sheikh-H/n8n-nodes-edit-image-ultimate/main/docs/images/text-operation-panel-2.png" width="260" alt="Text operation — wrapping, decoration, and effects fields"><br>
+      <img src="https://raw.githubusercontent.com/gorkemkeskinkol/n8n-nodes-edit-image-ultimate/main/docs/images/text-operation-panel-2.png" width="260" alt="Text operation — wrapping, decoration, and effects fields"><br>
       <sub>Text — wrapping & decoration</sub>
     </td>
   </tr>
@@ -123,13 +126,13 @@ n8n's built-in **Edit Image** node has 13 actions. This node has 23 — 10 opera
 1. Open your n8n instance
 2. Go to **Settings → Community Nodes**
 3. Click **Install**
-4. Enter `n8n-nodes-edit-image-ultimate`
+4. Enter `n8n-nodes-edit-image-ultimate-plus`
 5. Click **Install**
 
 ### Via npm (self-hosted / Docker)
 
 ```bash
-npm install n8n-nodes-edit-image-ultimate
+npm install n8n-nodes-edit-image-ultimate-plus
 ```
 
 Point the `N8N_CUSTOM_EXTENSIONS` environment variable at the package, or place it under your n8n user data directory's `custom/` folder.
@@ -187,7 +190,7 @@ Full field-by-field reference for every operation other than Text and Template i
 Set **Operation** to **Text** to reveal all of the fields below. This is the deepest feature set in the node, so it's organised into the same logical groups you'll see in the n8n UI.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Abdullah-Sheikh-H/n8n-nodes-edit-image-ultimate/main/docs/images/text-operation-panel-1.png" width="360" alt="Text operation panel, top half: font, color, weight, style, alignment, gravity">
+  <img src="https://raw.githubusercontent.com/gorkemkeskinkol/n8n-nodes-edit-image-ultimate/main/docs/images/text-operation-panel-1.png" width="360" alt="Text operation panel, top half: font, color, weight, style, alignment, gravity">
 </p>
 
 ### 4.1 Content and Font
@@ -639,7 +642,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the full version history.
 Pull requests are welcome — please open an issue first to discuss what you'd like to change.
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/gorkemkeskinkol/n8n-nodes-edit-image-ultimate.git
 cd n8n-nodes-edit-image-ultimate
 npm install --legacy-peer-deps
 npm run dev   # watch mode
