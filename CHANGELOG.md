@@ -5,6 +5,7 @@ All notable changes to this project are documented here.
 ## [Unreleased]
 
 ### Added
+- **Trim** operation: crops an image to the bounding box of its non-transparent pixels, removing empty transparent space around the edges. **Alpha Threshold** (0–254) controls which pixels count as transparent, so faint halos can be ignored too, and **Padding** keeps an optional transparent margin around the content. Works in Multi-Step mode, and trims the image as it is at that step, not the original input
 - **Canvas Size** operation — Photoshop-style canvas resize. Set a new size or add/remove from the current one (**Mode**), in pixels or percent (**Unit**), with a 9-point **Anchor** that decides where the original image sits. Growing adds empty space, shrinking crops. **Background Color** defaults to fully transparent. Works in Multi-Step mode on the image as it is at that step
 
 ### Fixed
